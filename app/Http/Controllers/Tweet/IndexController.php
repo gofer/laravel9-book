@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Tweet;
 
 use App\Http\Controllers\Controller;
+use App\Models\Tweet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use Illuminate\View\Factory;
@@ -18,18 +19,9 @@ class IndexController extends Controller
      */
     public function __invoke(Request $request, Factory $factory)
     {
-        // 1. viewヘルパー関数で呼び出す
-        // return view('tweet.index', ['name' => 'laravel']);
-
-        // 2. Facadeで呼び出す
-        //return View::make('tweet.index', ['name' => 'laravel']);
-
-        // 3. Factoryをインジェクションして呼び出す
-        // return $factory->make('tweet.index', ['name' => 'laravel']);
-
-        // 4. viewヘルパー関数に変数を渡す別の方法
+        $tweets = Tweet::all();
+        //dd($tweets);
         return view('tweet.index')
-            ->with('name', 'laravel')
-            ->with('version', '9');
+            ->with('tweets', $tweets);
     }
 }

@@ -29,6 +29,16 @@ class CreateRequest extends FormRequest
     }
 
     /**
+     * Retrieve the user ID in the request.
+     * 
+     * @return int
+     */
+    public function userId(): int
+    {
+        return $this->user()->id;
+    }
+
+    /**
      * Retrieve the tweet in the request.
      * 
      * @return string

@@ -24,7 +24,9 @@ class CreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'tweet' => 'required|max:140'
+            'tweet' => 'required|max:140',
+            'images' => 'array|max:4',
+            'images.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
     }
 
@@ -46,5 +48,15 @@ class CreateRequest extends FormRequest
     public function tweet(): string
     {
         return $this->input('tweet');
+    }
+
+    /**
+     * Retrieve the images in the request.
+     * 
+     * @return array
+     */
+    public function images(): array
+    {
+        return $this->file('images', []);
     }
 }
